@@ -7,7 +7,7 @@ import NewsItem from "./NewsItem/NewsItem";
 import { News } from "../../types"
 import styles from "./NewsListScreen.styles";
 
-const NewsList = () => {
+const NewsListScreen = () => {
   const [data, setData] = useState<News[]>([]);
   const [loading, isLoading] = useState(false);
   const [offset, setOffset] = useState(0);
@@ -67,4 +67,4 @@ const NewsList = () => {
   )
 }
 
-export default NewsList;
+export default NewsListScreen;

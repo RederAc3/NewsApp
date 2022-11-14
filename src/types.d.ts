@@ -29,3 +29,9 @@ export type IconBarProps = {
     numberOfComments: number;
     isLiked: boolean;
 }
+
+export type NewsDetailsProps = {
+    route: {
+        params: News
+    };
+}
