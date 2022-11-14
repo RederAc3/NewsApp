@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { SafeAreaView, Text, FlatList } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import NewsItem from "./NewsItem/NewsItem";
 import { News } from "../../types"
 import styles from "./NewsListScreen.styles";
 
@@ -42,7 +43,7 @@ const NewsList = () => {
       <FlatList
         data={data}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <Text>{item.title}</Text>}
+        renderItem={({ item }) => <NewsItem {...item} />}
         showsVerticalScrollIndicator={false}
       />
 
