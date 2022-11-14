@@ -18,7 +18,10 @@ const NewsListScreen = () => {
   }, []);
 
   const getData = async () => {
-    
+    if (lastPage) {
+      return;
+    }
+
     const token = await AsyncStorage.getItem('token');
 
     let config = {
@@ -31,9 +34,9 @@ const NewsListScreen = () => {
 
     try {
       isLoading(true)
-      
+
       const { data: { messages } } = await axios.get(`https://afreactrecrutation.azurewebsites.net/api/Messages?page=${offset}`, config);
-     
+
       setOffset(offset + 1)
       setData([...data, ...messages]);
 
@@ -47,10 +50,9 @@ const NewsListScreen = () => {
   }
 
   const FooterItemLoader = () => (
-    <TouchableOpacity onPress={getData}>
+    <>
       {loading && <ActivityIndicator />}
-      {!lastPage && offset > 0 && <Text style={styles.listFooter}>Załaduj więcej...</Text>}
-    </TouchableOpacity>
+    </>
   );
 
   return (
@@ -62,6 +64,8 @@ const NewsListScreen = () => {
         renderItem={({ item }) => <NewsItem {...item} />}
         showsVerticalScrollIndicator={false}
         ListFooterComponent={FooterItemLoader}
+        onEndReached={getData}
+        onEndReachedThreshold={0.5}
       />
 
     </SafeAreaView>
