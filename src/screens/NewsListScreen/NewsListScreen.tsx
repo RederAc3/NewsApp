@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { SafeAreaView, Text, FlatList } from "react-native";
+import { SafeAreaView, Text, FlatList, TouchableOpacity, ActivityIndicator } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import NewsItem from "./NewsItem/NewsItem";
@@ -8,8 +8,10 @@ import { News } from "../../types"
 import styles from "./NewsListScreen.styles";
 
 const NewsList = () => {
-  const [data, setData] = useState<News[]>([])
+  const [data, setData] = useState<News[]>([]);
   const [loading, isLoading] = useState(false);
+  const [offset, setOffset] = useState(0);
+  const [lastPage, setLastPage] = useState(false);
 
   useEffect(() => {
     getData()
@@ -29,22 +31,36 @@ const NewsList = () => {
 
     try {
       isLoading(true)
-      const { data: { messages } } = await axios.get(`https://afreactrecrutation.azurewebsites.net/api/Messages?page=0`, config);
-      setData([ ...messages]);
-      isLoading(false)
+      
+      const { data: { messages } } = await axios.get(`https://afreactrecrutation.azurewebsites.net/api/Messages?page=${offset}`, config);
+     
+      setOffset(offset + 1)
+      setData([...data, ...messages]);
+
+      messages.length < 4 ? setLastPage(true) : setLastPage(false);
+
+      isLoading(false);
 
     } catch (err) {
       console.log(`[ getData ] - ${err}`);
     }
   }
 
+  const FooterItemLoader = () => (
+    <TouchableOpacity onPress={getData}>
+      {loading && <ActivityIndicator />}
+      {!lastPage && offset > 0 && <Text style={styles.listFooter}>Załaduj więcej...</Text>}
+    </TouchableOpacity>
+  );
+
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
         data={data}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.createDate}
         renderItem={({ item }) => <NewsItem {...item} />}
         showsVerticalScrollIndicator={false}
+        ListFooterComponent={FooterItemLoader}
       />
 
     </SafeAreaView>
