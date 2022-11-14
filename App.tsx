@@ -6,7 +6,7 @@ import NewsListScreen from "./src/screens/NewsListScreen/NewsListScreen";
 import LoginScreen from "./src/screens/LoginScreen/LoginScreen";
 
 const Stack = createNativeStackNavigator();
-const auth = false
+const auth = true
 
 const Root = () => {
   return (
