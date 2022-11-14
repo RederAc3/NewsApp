@@ -3,10 +3,11 @@ import { useState, useEffect } from "react";
 import { SafeAreaView, Text, FlatList } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import { News } from "../../types"
 import styles from "./NewsListScreen.styles";
 
 const NewsList = () => {
-  const [data, setData] = useState([])
+  const [data, setData] = useState<News[]>([])
   const [loading, isLoading] = useState(false);
 
   useEffect(() => {
