@@ -2,9 +2,9 @@ import { Text, TouchableOpacity, useWindowDimensions } from "react-native";
 import RenderHtml from "react-native-render-html";
 import { useNavigation } from "@react-navigation/native";
 
-import IconBar from "../../../components/IconBar/IconBar";
-import formatDate from '../../../functions/formatDate';
-import { News } from "../../../types";
+import IconBar from "../IconBar/IconBar";
+import formatDate from '../../functions/formatDate';
+import { News } from "../../types";
 import styles from "./NewsItem.styles";
 
 const NewsItem: React.FC<News> = props => {

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { SafeAreaView, Text, FlatList, TouchableOpacity, ActivityIndicator } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import NewsItem from "./NewsItem/NewsItem";
+import NewsItem from "../../components/NewsItem/NewsItem";
 import { News } from "../../types"
 import styles from "./NewsListScreen.styles";
 
