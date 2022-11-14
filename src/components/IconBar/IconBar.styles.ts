@@ -14,6 +14,6 @@ export default StyleSheet.create({
     
   },
   iconNumber: {
-    marginRight: 10
+    marginLeft: 5
   }
 });
