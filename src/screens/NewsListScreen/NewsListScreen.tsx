@@ -57,6 +57,7 @@ const NewsListScreen = () => {
     <SafeAreaView style={styles.container}>
       <FlatList
         data={data}
+        rowGap="10px"
         keyExtractor={(item) => item.createDate}
         renderItem={({ item }) => <NewsItem {...item} />}
         showsVerticalScrollIndicator={false}

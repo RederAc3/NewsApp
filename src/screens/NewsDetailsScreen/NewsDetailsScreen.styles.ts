@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
     detailsContainer: {
-        padding: 10
+        margin: 10
     },
 
     newsItem: {
@@ -29,7 +29,7 @@ export default StyleSheet.create({
         textAlign: "center",
         paddingBottom: 10
     },
-    
+
     commentsSectionTitle: {
         fontSize: 25,
         margin: 10,

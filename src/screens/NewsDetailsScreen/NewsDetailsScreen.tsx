@@ -1,5 +1,7 @@
 import { SafeAreaView, Text, ScrollView, useWindowDimensions } from "react-native";
 import RenderHtml from 'react-native-render-html';
+import IframeRenderer, { iframeModel } from '@native-html/iframe-plugin';
+import WebView from 'react-native-webview';
 
 import CommentItem from "../../components/CommentItem/CommentItem"
 import formatDate from '../../functions/formatDate';
@@ -8,7 +10,7 @@ import { NewsDetailsProps } from "../../types"
 import styles from "./NewsDetailsScreen.styles";
 
 
-const NewsDetailsScreen: React.FC<NewsDetailsProps> = ({ route: { params: { title, content, author, comments, createDate }}}) => {
+const NewsDetailsScreen: React.FC<NewsDetailsProps> = ({ route: { params: { title, content, author, comments, createDate } } }) => {
   const { width } = useWindowDimensions();
 
   return (
@@ -19,9 +21,16 @@ const NewsDetailsScreen: React.FC<NewsDetailsProps> = ({ route: { params: { titl
         <Text style={styles.author}>Dodano: {formatDate(createDate)}</Text>
 
         <RenderHtml
+          renderers={{ iframe: IframeRenderer }}
+          WebView={WebView}
           contentWidth={width}
           source={{ html: content }}
-          ignoredDomTags={["iframe"]}
+          customHTMLElementModels={{ iframe: iframeModel }}
+          renderersProps={{
+            iframe: {
+              scalesPageToFit: true,
+            }
+          }}
         />
 
         <Text style={styles.commentsSectionTitle}>Komentarze {comments.length ? `- ${comments.length}` : ''}</Text>
