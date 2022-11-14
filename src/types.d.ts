@@ -9,3 +9,23 @@ export type News = {
     createDate: Date;
     type: number;
 };
+
+export type Comment = {
+    id : number;
+    content: string;
+    author: Author;
+    createDate: Date;
+    numberOfLikes: number;
+    isLiked: boolean;
+};
+
+export type Author = {
+    id : number;
+    fullName: string;
+};
+
+export type IconBarProps = {
+    numberOfLikes: number;
+    numberOfComments: number;
+    isLiked: boolean;
+}
