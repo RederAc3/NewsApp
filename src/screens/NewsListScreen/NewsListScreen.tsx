@@ -1,7 +1,8 @@
-import React from "react";
 import { SafeAreaView } from "react-native";
-import styles from "./News.styles";
+import styles from "./NewsListScreen.styles";
 
-export default function News() {
+const NewsListScreen = () => {
   return <SafeAreaView style={styles.container}></SafeAreaView>;
 }
+
+export default NewsListScreen;
