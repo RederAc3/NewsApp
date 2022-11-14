@@ -1,5 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { StatusBar } from 'expo-status-bar';
+
 import NewsListScreen from "./src/screens/NewsListScreen/NewsListScreen";
 import LoginScreen from "./src/screens/LoginScreen/LoginScreen";
 
@@ -9,6 +11,7 @@ const auth = false
 const Root = () => {
   return (
     <NavigationContainer>
+      <StatusBar style="dark" />
       <Stack.Navigator>
         {
           !auth ? (
